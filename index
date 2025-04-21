@@ -19,7 +19,7 @@
     }).addTo(map);
 
     
-    fetch('Vietnam_Provinces.geojson')
+    fetch('Vietnam_Provinces.json')
       .then(res => res.json())
       .then(data => {
         L.geoJSON(data).addTo(map);
