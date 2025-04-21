@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vietnam Provinces Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map { height: 100vh; } 
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script src="https://unpkg.com/shapefile@0.6.8/dist/shapefile.min.js"></script>
+
+  <script>
+    var map = L.map('map').setView([14.0583, 108.2772], 6); 
+
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    function loadShapefile() {
+      shapefile.open("https://raw.githubusercontent.com/yourusername/yourrepo/main/vietnam_provinces.shp") 
+        .then(function(source) {
+          source.read().then(function(result) {
+            L.geoJSON(result.value).addTo(map);
+            loadShapefile(); 
+          });
+        }).catch(function(error) {
+          console.error(error); 
+        });
+    }
+
+    loadShapefile(); 
+  </script>
+
+</body>
+</html>
