@@ -1,33 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Simple Map</title>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Leaflet CSS -->
+  <title>Simple Map</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
-    #map {
-      height: 100vh;
-    }
+    #map { height: 100vh; } /* Bản đồ sẽ chiếm toàn bộ chiều cao của cửa sổ */
   </style>
 </head>
 <body>
-  <div id="map"></div>
-
-  <!-- Leaflet JS -->
+  <div id="map"></div> <!-- Phần tử này sẽ hiển thị bản đồ -->
+  
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    // Khởi tạo bản đồ tại Hà Nội
-    var map = L.map('map').setView([21.0285, 105.8542], 13);
+    // Tạo bản đồ và định vị nó tại Hà Nội
+    var map = L.map('map').setView([21.0285, 105.8542], 13); 
 
-    // Layer của bản đồ
+    // Thêm lớp tile từ OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Thêm 1 marker
+    // Thêm một marker (chấm đỏ) tại Hà Nội
     L.marker([21.0285, 105.8542]).addTo(map)
       .bindPopup('Hà Nội')
       .openPopup();
